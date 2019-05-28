@@ -2,6 +2,7 @@
 
 > A component library to create labeled badges
 
+## Example Badges
 ![example images](https://i.imgur.com/uNK6e0m.png "Example")
 
 [![NPM](https://img.shields.io/npm/v/@insightlabs/mui-labeled-badge.svg)](https://www.npmjs.com/package/@insightlabs/mui-labeled-badge) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
