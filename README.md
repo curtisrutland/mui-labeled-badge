@@ -7,20 +7,26 @@
 ## Install
 
 ```bash
-npm install --save @insightlabs/mui-labeled-badge
+npm install --save @insightlabs/mui-labeled-badge @material-ui/core
+#or
+yarn add @insightlabs/mui-labeled-badge @material-ui/core
 ```
 
 ## Usage
 
-```tsx
-import * as React from 'react'
-
-import MyComponent from '@insightlabs/mui-labeled-badge'
+```jsx
+import React from 'react'
+import { LabeledBadge, BadgeList } from '@insightlabs/mui-labeled-badge'
 
 class Example extends React.Component {
   render () {
     return (
-      <MyComponent />
+      <BadgeList>
+        <LabeledBadge label="Test" value={10} />
+        <LabeledBadge label="Test" value={10} color="secondary" />
+        <LabeledBadge label="Test" value={10} color="#000"/>
+        <LabeledBadge label="Test" value={10} color="rgb(255, 0, 0)" />
+      </BadgeList>
     )
   }
 }
@@ -28,4 +34,4 @@ class Example extends React.Component {
 
 ## License
 
-MIT © [curtisrutland](https://github.com/curtisrutland)
+MIT
