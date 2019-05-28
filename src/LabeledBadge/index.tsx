@@ -3,17 +3,26 @@ import { withStyles, WithStyles, withTheme, WithTheme, createStyles } from "@mat
 import Typography from "@material-ui/core/Typography";
 import { compose } from "recompose";
 
+const padding = "0px 5px";
+
 const styles = createStyles({
-  wrapper: {
-    margin: 2,
-    borderRadius: 4,
-    border: '1px solid'
+  root: {
+    display: "flex",
+    flexFlow: "row nowrap",
+    alignItems: "stretch",
+    margin: 2
   },
-  name: {
-    padding: '3px 5px',
+  label: {
+    borderRadius: "4px 0 0 4px",
+    border: "1px solid",
+    borderRight: 0,
+    padding
   },
   value: {
-    padding: '3px 5px',
+    borderRadius: "0 4px 4px 0",
+    border: "1px solid",
+    borderLeft: 0,
+    padding,
   }
 });
 
@@ -21,44 +30,58 @@ interface Props {
   label: string;
   value: string | number | null | undefined;
   color: string;
+  inverted: boolean;
 }
 
 export type LabeledBadgeProps = Props & WithStyles<typeof styles> & WithTheme;
 
-const LabeledBadge: React.SFC<LabeledBadgeProps> = ({ classes, label, value, color = "primary", theme }) => {
+const LabeledBadge: React.SFC<LabeledBadgeProps> = ({ classes, label, value, color = "primary", inverted = false, theme }) => {
 
-  const wrapperStyle: React.CSSProperties = {};
-  const valueStyle: React.CSSProperties = {};
+  const transparent: React.CSSProperties = {};
+  const colored: React.CSSProperties = {};
 
   if (color === "primary") {
     const palette = theme.palette.primary;
-    wrapperStyle.borderColor = palette.main;
-    valueStyle.backgroundColor = palette.main;
-    valueStyle.color = palette.contrastText;
+    transparent.borderColor = palette.main;
+    colored.backgroundColor = palette.main;
+    colored.color = palette.contrastText;
   } else if (color === "secondary") {
     const palette = theme.palette.secondary;
-    wrapperStyle.borderColor = palette.main;
-    valueStyle.backgroundColor = palette.main;
-    valueStyle.color = palette.contrastText;
+    transparent.borderColor = palette.main;
+    colored.backgroundColor = palette.main;
+    colored.color = palette.contrastText;
   } else {
-    wrapperStyle.borderColor = color;
-    valueStyle.backgroundColor = color;
-    valueStyle.color = theme.palette.getContrastText(color)
+    transparent.borderColor = color;
+    colored.backgroundColor = color;
+    colored.color = theme.palette.getContrastText(color)
   }
 
-  let displayValue: string;
-  if (value == null)
-    displayValue = "N/A";
-  else if (typeof value === "number") {
-    displayValue = value.toString();
+  if (color === "primary") {
+    const palette = theme.palette.primary;
+    transparent.borderColor = palette.main;
+    colored.borderColor = palette.main;
+    colored.backgroundColor = palette.main;
+    colored.color = palette.contrastText;
+  } else if (color === "secondary") {
+    const palette = theme.palette.secondary;
+    transparent.borderColor = palette.main;
+    colored.borderColor = palette.main;
+    colored.backgroundColor = palette.main;
+    colored.color = palette.contrastText;
   } else {
-    displayValue = value;
+    transparent.borderColor = color;
+    colored.borderColor = color;
+    colored.backgroundColor = color;
+    colored.color = theme.palette.getContrastText(color)
   }
+
+  let labelStyle = inverted ? colored : transparent;
+  let valueStyle = inverted ? transparent : colored;
 
   return (
-    <Typography noWrap variant="body2" className={classes.wrapper} style={wrapperStyle}>
-      <span className={classes.name}>{label}</span>
-      <span className={classes.value} style={valueStyle}>{displayValue}</span>
+    <Typography variant="body2" component="span" className={classes.root}>
+      <div className={classes.label} style={labelStyle}>{label}</div>
+      <div className={classes.value} style={valueStyle}>{value}</div>
     </Typography>
   )
 }

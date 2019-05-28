@@ -14,19 +14,25 @@ export default class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
-        <BadgeList style={{border: "1px solid black", margin: 10}}>
+        <BadgeList style={{ border: "1px solid black", margin: 10 }}>
           <LabeledBadge label="Test" value={10} />
           <LabeledBadge label="Test" value={10} color="secondary" />
-          <LabeledBadge label="Test" value={10} color="#000"/>
-          <LabeledBadge label="Test" value={10} color="rgb(255, 0, 0)" />
+          <LabeledBadge label="Test" value={10} color="#000" />
+          <LabeledBadge label="Test" value={10} color="rgb(255, 0, 0)" inverted />
         </BadgeList>
-        <div style={{height: 10}} />
-        <BadgeList style={{width: 200, border: "1px solid black", margin: 10}}>
+        <div style={{ height: 10 }} />
+        <BadgeList style={{ width: 200, border: "1px solid black", margin: 10 }}>
           <LabeledBadge label="Test" value={10} />
           <LabeledBadge label="Test" value={10} color="secondary" />
-          <LabeledBadge label="Test" value={10} color="#000"/>
-          <LabeledBadge label="Test" value={10} color="rgb(255, 0, 0)" />
+          <LabeledBadge label="Test" value={10} color="#000" />
+          <LabeledBadge label="Test" value={10} color="rgb(255, 0, 0)" inverted />
         </BadgeList>
+
+        <div style={{ margin: 20, display: "flex" }}>
+
+          <LabeledBadge label="Label" value="Value" />
+          <LabeledBadge label="Inverted" value="23" color="secondary" inverted />
+        </div>
       </MuiThemeProvider>
     )
   }
