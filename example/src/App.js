@@ -10,6 +10,11 @@ const theme = createMuiTheme({
 });
 
 export default class App extends Component {
+
+  handleClick = ({label, value}) => {
+    alert(`Clicked. Label: ${label}, value: ${value}`);
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -30,7 +35,7 @@ export default class App extends Component {
 
         <div style={{ margin: 20, display: "flex" }}>
 
-          <LabeledBadge label="Label" value="Value" />
+          <LabeledBadge label="Click" value="Me" onClick={this.handleClick} />
           <LabeledBadge label="Inverted" value="23" color="secondary" inverted />
         </div>
       </MuiThemeProvider>

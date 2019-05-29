@@ -24,10 +24,12 @@ import { LabeledBadge, BadgeList } from '@insightlabs/mui-labeled-badge'
 function ExampleComponent {
   return (
     <BadgeList>
-      <LabeledBadge label="Test" value={10} />
-      <LabeledBadge label="Test" value={10} color="secondary" />
-      <LabeledBadge label="Test" value={10} color="#000"/>
-      <LabeledBadge label="Test" value={10} color="rgb(255, 0, 0)" />
+      <LabeledBadge label="Primary" value="Color" />
+      <LabeledBadge label="Secondary" value="Color" color="secondary" />
+      <LabeledBadge label="Custom" value="Color" color="#f4a742" />
+      <LabeledBadge label="Number" value={4500} color="rgb(183, 7, 7)"  />
+      <LabeledBadge label="Inverted" value={123} color="primary"  />
+      <LabeledBadge label="Click" value="Me" onClick={(args) => console.log("Labeled badge clicked!", args)} />
     </BadgeList>
   )
 }

@@ -26,17 +26,41 @@ const styles = createStyles({
   }
 });
 
+type Value = string | number | null | undefined;
+
+interface LabeledBadgeOnClickArgs {
+  label: string;
+  value: Value;
+}
+
 interface Props {
   label: string;
-  value: string | number | null | undefined;
+  value: Value;
   color: string;
   inverted: boolean;
+  onClick?: (args: LabeledBadgeOnClickArgs) => void;
 }
 
 export type LabeledBadgeProps = Props & WithStyles<typeof styles> & WithTheme;
 
-const LabeledBadge: React.SFC<LabeledBadgeProps> = ({ classes, label, value, color = "primary", inverted = false, theme }) => {
 
+const LabeledBadge: React.SFC<LabeledBadgeProps> = ({
+  classes,
+  label,
+  value,
+  color = "primary",
+  inverted = false,
+  theme,
+  onClick
+}) => {
+
+  function handleClick() {
+    if (onClick != null) {
+      onClick({ label, value });
+    }
+  }
+
+  const container: React.CSSProperties = { cursor: onClick != null ? "pointer" : "unset" };
   const transparent: React.CSSProperties = {};
   const colored: React.CSSProperties = {};
 
@@ -79,7 +103,7 @@ const LabeledBadge: React.SFC<LabeledBadgeProps> = ({ classes, label, value, col
   let valueStyle = inverted ? transparent : colored;
 
   return (
-    <Typography variant="body2" component="span" className={classes.root}>
+    <Typography variant="body2" component="span" className={classes.root} onClick={handleClick} style={container}>
       <div className={classes.label} style={labelStyle}>{label}</div>
       <div className={classes.value} style={valueStyle}>{value}</div>
     </Typography>
