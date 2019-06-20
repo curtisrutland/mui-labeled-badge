@@ -7,12 +7,16 @@
 
 [![NPM](https://img.shields.io/npm/v/@insightlabs/mui-labeled-badge.svg)](https://www.npmjs.com/package/@insightlabs/mui-labeled-badge) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Note:
+version 2.0.0 is updated to work with Material-UI 4.
+version 2.0.1 includes forwardRef for LabeledBadge
+
 ## Install
 
 ```bash
-npm install --save @insightlabs/mui-labeled-badge @material-ui/core
+npm install --save @insightlabs/mui-labeled-badge @material-ui/core@latest @material-ui/styles@latest
 #or
-yarn add @insightlabs/mui-labeled-badge @material-ui/core
+yarn add @insightlabs/mui-labeled-badge @material-ui/core@latest @material-ui/styles@latest
 ```
 
 ## Usage

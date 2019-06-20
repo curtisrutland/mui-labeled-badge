@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, WithStyles, withTheme, WithTheme, createStyles } from "@material-ui/core/styles";
+import { withStyles, WithStyles, withTheme, WithTheme, createStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
 import { compose } from "recompose";
 
@@ -26,7 +26,7 @@ const styles = createStyles({
   }
 });
 
-type Value = string | number | null | undefined;
+type Value = string | number | JSX.Element | null | undefined;
 
 interface LabeledBadgeOnClickArgs {
   label: string;
@@ -39,12 +39,13 @@ interface Props {
   color: string;
   inverted: boolean;
   onClick?: (args: LabeledBadgeOnClickArgs) => void;
+  ref: React.Ref<HTMLDivElement>
 }
 
-export type LabeledBadgeProps = Props & WithStyles<typeof styles> & WithTheme;
+export type LabeledBadgeProps = Props & WithStyles<typeof styles> & WithTheme<any>;
 
 
-const LabeledBadge: React.SFC<LabeledBadgeProps> = ({
+const LabeledBadge: React.FunctionComponent<LabeledBadgeProps> = React.forwardRef(({
   classes,
   label,
   value,
@@ -52,11 +53,11 @@ const LabeledBadge: React.SFC<LabeledBadgeProps> = ({
   inverted = false,
   theme,
   onClick
-}) => {
+}, ref) => {
 
   function handleClick() {
     if (onClick != null) {
-      onClick({ label, value });
+      onClick({ label: label, value: value });
     }
   }
 
@@ -105,12 +106,12 @@ const LabeledBadge: React.SFC<LabeledBadgeProps> = ({
   return (
     <Typography variant="body2" component="span" className={classes.root} onClick={handleClick} style={container}>
       <div className={classes.label} style={labelStyle}>{label}</div>
-      <div className={classes.value} style={valueStyle}>{value}</div>
+      <div ref={ref} className={classes.value} style={valueStyle}>{value}</div>
     </Typography>
   )
-}
+})
 
 export default compose<Props, LabeledBadgeProps>(
   withStyles(styles),
-  withTheme()
+  withTheme
 )(LabeledBadge);
