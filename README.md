@@ -7,9 +7,12 @@
 
 [![NPM](https://img.shields.io/npm/v/@insightlabs/mui-labeled-badge.svg)](https://www.npmjs.com/package/@insightlabs/mui-labeled-badge) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Note:
-version 2.0.0 is updated to work with Material-UI 4.
+## Release Notes
+version 2.0.2 vertically centers label and value
+
 version 2.0.1 includes forwardRef for LabeledBadge
+
+version 2.0.0 is updated to work with Material-UI 4.
 
 ## Install
 
