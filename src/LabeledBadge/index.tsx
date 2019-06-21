@@ -16,13 +16,17 @@ const styles = createStyles({
     borderRadius: "4px 0 0 4px",
     border: "1px solid",
     borderRight: 0,
-    padding
+    padding,
+    display: "flex",
+    alignItems: "center",
   },
   value: {
     borderRadius: "0 4px 4px 0",
     border: "1px solid",
     borderLeft: 0,
     padding,
+    display: "flex",
+    alignItems: "center",
   }
 });
 

@@ -5,12 +5,21 @@ import { LabeledBadge, BadgeList } from '@insightlabs/mui-labeled-badge'
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true
   }
 });
+
+function DropDownIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/>
+    </SvgIcon>
+  )
+}
 
 export default function App() {
   const [anchor, setAnchor] = React.useState(null);
@@ -43,7 +52,12 @@ export default function App() {
         <LabeledBadge label="Inverted" value="23" color="secondary" inverted />
       </div>
       <div>
-        <LabeledBadge label="Menu Anchor" value="Test" ref={badgeRef} onClick={() => setAnchor(badgeRef.current)} />
+        <LabeledBadge label="Menu Anchor" value={(
+          <React.Fragment>
+          test
+          <DropDownIcon style={{margin: 24}} />
+          </React.Fragment>
+        )} ref={badgeRef} onClick={() => setAnchor(badgeRef.current)} />
       </div>
       <Menu anchorEl={anchor} open={!!anchor} keepMounted onClose={() => setAnchor(null)}>
         <MenuItem onClick={() => setAnchor(null)}>Hello</MenuItem>
