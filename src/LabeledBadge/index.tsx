@@ -41,7 +41,7 @@ interface Props {
   label: string;
   value: Value;
   color: string;
-  inverted: boolean;
+  inverted?: boolean;
   onClick?: (args: LabeledBadgeOnClickArgs) => void;
   ref: React.Ref<HTMLDivElement>
 }
@@ -115,7 +115,7 @@ const LabeledBadge: React.FunctionComponent<LabeledBadgeProps> = React.forwardRe
   )
 })
 
-export default compose<Props, LabeledBadgeProps>(
+export default compose<LabeledBadgeProps, Props>(
   withStyles(styles),
   withTheme
 )(LabeledBadge);

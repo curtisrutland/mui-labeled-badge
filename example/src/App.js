@@ -1,11 +1,11 @@
 import React from 'react'
 import { createMuiTheme } from "@material-ui/core/styles"
 import { ThemeProvider } from "@material-ui/styles";
-import { LabeledBadge, BadgeList } from '@insightlabs/mui-labeled-badge'
+import { LabeledBadge, BadgeList, LabeledBadgeMenu } from '@insightlabs/mui-labeled-badge'
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import SvgIcon from '@material-ui/core/SvgIcon';
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import menuItems from "./menuItems";
 
 const theme = createMuiTheme({
   typography: {
@@ -22,12 +22,13 @@ function DropDownIcon(props) {
 }
 
 export default function App() {
-  const [anchor, setAnchor] = React.useState(null);
-  const badgeRef = React.useRef(null);
+  
 
   function handleClick({ label, value }) {
     alert(`Clicked. Label: ${label}, value: ${value}`);
   }
+
+  const [selectedItem, setSelectedItem] = React.useState(menuItems[0]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,23 +46,22 @@ export default function App() {
         <LabeledBadge label="Test" value={10} color="#000" />
         <LabeledBadge label="Test" value={10} color="rgb(255, 0, 0)" inverted />
       </BadgeList>
-
+      <div style={{height: 10}} />
+      <BadgeList style={{boarder: "1px solid black", margin: 10}}>
+        <LabeledBadgeMenu
+          title="Example"
+          text={selectedItem.value}
+          icon={<ArrowDropDownIcon />}
+          menuItems={menuItems}
+          color="primary"
+          onItemSelected={setSelectedItem} />
+      </BadgeList>
       <div style={{ margin: 20, display: "flex" }}>
 
         <LabeledBadge label="Click" value="Me" onClick={handleClick} />
         <LabeledBadge label="Inverted" value="23" color="secondary" inverted />
       </div>
-      <div>
-        <LabeledBadge label="Menu Anchor" value={(
-          <React.Fragment>
-          test
-          <DropDownIcon style={{margin: 24}} />
-          </React.Fragment>
-        )} ref={badgeRef} onClick={() => setAnchor(badgeRef.current)} />
-      </div>
-      <Menu anchorEl={anchor} open={!!anchor} keepMounted onClose={() => setAnchor(null)}>
-        <MenuItem onClick={() => setAnchor(null)}>Hello</MenuItem>
-      </Menu>
+      
     </ThemeProvider>
   )
 }
